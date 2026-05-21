@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NotificationDemoController;
+use App\Http\Controllers\QueueDemoController;
+use App\Http\Controllers\SmsDemoController;
 use App\Http\Controllers\SubscriptionPlanController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +16,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
 });
+
+// Queue demo route
+Route::post('/demo/welcome-email', [QueueDemoController::class, 'sendWelcomeEmail']);
+
+// Notification demo route
+Route::post('/demo/send-notification', [NotificationDemoController::class, 'sendWelcomeEmail']);
+
+// SMS demo routes
+Route::post('/demo/send-sms', [SmsDemoController::class, 'sendSms']);
+Route::post('/demo/send-welcome-sms', [SmsDemoController::class, 'sendWelcomeSms']);
 
 // Public subscription plan routes
 Route::get('/subscription-plans', [SubscriptionPlanController::class, 'index']);
